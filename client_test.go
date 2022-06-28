@@ -8,9 +8,11 @@ import (
 	"net/http/httptest"
 	"strconv"
 	"testing"
+	"time"
 )
 
 func setup() *httptest.Server {
+	rand.Seed(time.Now().UnixNano())
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		arg := r.URL.Query().Get("pct")
 		if arg == "" {
